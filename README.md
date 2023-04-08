@@ -1,5 +1,5 @@
 ## Midterm take-home Assignment
-### MSSV: 52000376, Full name: Phạm Phong Nhã
+### ID: 52000376, Full name: Phạm Phong Nhã
 ### 1. Software development principles, patterns and practices being applied.
 Dependency Injection: The HomeController class uses Dependency Injection to inject instances of the ProductServiceImpl, CategoryServiceImpl, and CartItemServiceImpl classes into its constructor. This makes the class more modular and easier to test, as it can be easily swapped out with mock or stub implementations.
 
