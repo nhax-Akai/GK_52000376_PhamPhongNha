@@ -51,7 +51,7 @@ The code structure also includes the necessary configurations for Spring Boot, s
 http://localhost:8080/
 
 ### 4. Entity-relationship diagram for the database
-Link picture: [https://github.com](https://drive.google.com/file/d/1wUF3njTJzIA4mhCplRXZfUwzRfJA09Js/view?usp=sharing)
+Link picture: [https://github.com](https://drive.google.com/file/d/1-Bp_uZi_aF2LWge2GR7ZfuuhwcpqA5XL/view?usp=sharing)
 
 ### 5. Video demo 
 Link video: 
