@@ -52,3 +52,7 @@ http://localhost:8080/
 
 ### 4. Entity-relationship diagram for the database
 Link picture: [https://github.com](https://drive.google.com/file/d/1wUF3njTJzIA4mhCplRXZfUwzRfJA09Js/view?usp=sharing)
+
+### 5. Video demo 
+Link video: 
+
