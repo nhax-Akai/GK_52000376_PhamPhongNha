@@ -50,6 +50,8 @@ The code structure also includes the necessary configurations for Spring Boot, s
 7. Open a web browser and go to the following URL to access the application:
 http://localhost:8080/
 
+8. Username: admin, password: admin to login form.
+
 ### 4. Entity-relationship diagram for the database
 Link picture: [https://github.com](https://drive.google.com/file/d/1-Bp_uZi_aF2LWge2GR7ZfuuhwcpqA5XL/view?usp=sharing)
 
