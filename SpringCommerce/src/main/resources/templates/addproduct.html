@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <style>
+        label {
+            font-weight: bold;
+        }
+        input[type="file"] {
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Add Product</h2>
+        <form method="post" enctype="multipart/form-data" th:action="@{/addProduct}">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter product name" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="price">Price</label>
+                    <input type="text" name="price" id="price" class="form-control" placeholder="Enter product price" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="brand">Brand</label>
+                    <input type="text" name="brand" id="brand" class="form-control" placeholder="Enter product brand" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="color">Color</label>
+                    <input type="text" name="color" id="color" class="form-control" placeholder="Enter product color" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select name="category" id="category" class="form-control" required>
+                    <option value="">Select category</option>
+                    <option value="phone" th:selected="${category == 'phone'}">Phone</option>
+                    <option value="laptop" th:selected="${category == 'laptop'}">Laptop</option>
+                    <option value="tablet" th:selected="${category == 'tablet'}">Tablet</option>
+                    <option value="tv" th:selected="${category == 'tv'}">TV</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <div class="custom-file">
+                    <input type="file" name="image" id="image" class="custom-file-input" accept="image/png, image/jpeg" required>
+                    <label class="custom-file-label" for="image">Choose file</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script>
+        // Change file input label to show selected file name
+        $('.custom-file-input').on('change', function(event) {
+            var inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
+    </script>
+</body>
+</html>

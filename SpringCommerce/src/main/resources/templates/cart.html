@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-3">
+  <h1>Shopping Cart</h1>
+  <hr>
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th>Picture</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Brand</th>
+      <th>Color</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cartItem : ${cartItems}">
+      <td><img th:src="*{'data:image/jpeg;base64,'+{cartItem.product.image}}" width="100" height="100"></td>
+      <td th:text="${cartItem.product.name}"></td>
+      <td th:text="${cartItem.product.category.name}"></td>
+      <td th:text="${cartItem.product.brand}"></td>
+      <td th:text="${cartItem.product.color}"></td>
+      <td th:text="${cartItem.product.price}"></td>
+      <td>
+        <form th:action="@{/update/{id}(id=${cartItem.id})}" method="post">
+          <div class="input-group">
+              <input type="number" class="form-control" name="quantity" min="1" th:value="${cartItem.quantity}">
+              <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="submit">Update</button>
+              </div>
+          </div>
+      </form>
+      
+      </td>
+      <td th:text="${cartItem.totalPrice}"></td>
+      <td>
+        <form th:action="@{'/delete/' + ${cartItem.id}}" method="post">
+            <!-- <input type="hidden" name="id" th:value="${cartItem.id}"> -->
+            <button class="btn btn-danger" type="submit">Remove</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-right">Total:</td>
+      <td th:text="${totalPrice}"></td>
+    </tr>
+    </tfoot>
+  </table>
+
+  <div class="text-center">
+    <a href="/home" class="btn btn-primary">Continue Shopping</a>
+    <a href="/checkout" class="btn btn-success">Checkout</a>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+</body>
+</html>
+
+
+
+

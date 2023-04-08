@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+          <style>
+            /* Custom CSS */
+            body {
+                background-color: #f8f9fa;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+    
+            .card {
+                box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+                transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+    
+            .card:hover {
+                transform: translateY(-0.5rem);
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+            }
+    
+            .card-img-top {
+                object-fit: cover;
+            }
+    
+            .btn-primary {
+                background-color: #007bff;
+                border-color: #007bff;
+            }
+    
+            .btn-primary:hover {
+                background-color: #0069d9;
+                border-color: #0062cc;
+            }
+    
+            .btn-success {
+                background-color: #28a745;
+                border-color: #28a745;
+            }
+    
+            .btn-success:hover {
+                background-color: #218838;
+                border-color: #1e7e34;
+            }
+    
+            .input-group {
+                width: 300px;
+            }
+    
+            .form-control {
+                border-radius: 0;
+                padding-left: 10px;
+            }
+    
+            .btn {
+                border-radius: 0;
+                padding: 0.5rem 1rem;
+            }
+    
+            .footer-content {
+                display: flex;
+                justify-content: space-between;
+                padding: 1rem;
+                background-color: #343a40;
+                color: #f8f9fa;
+            }
+    
+            .footer-section ul {
+                list-style: none;
+                padding: 0;
+            }
+    
+            .footer-section a {
+                color: #f8f9fa;
+                text-decoration: none;
+                transition: color 0.15s ease-in-out;
+            }
+    
+            .footer-section a:hover {
+                color: #adb5bd;
+            }
+    
+            .footer-section h3 {
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+            .filter-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .filter-group {
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+            }
+
+            .filter-group label {
+                margin-right: 10px;
+                font-weight: bold;
+            }
+
+            .filter-select {
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #f8f8f8;
+            }
+
+            .filter-button {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 4px;
+                background-color: #007bff;
+                color: #fff;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .filter-button i {
+                margin-right: 8px;
+            }
+        </style>
+
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container">
+            <h1 class="text-center">Product List</h1>
+        </div>
+        <form th:action="@{/search}" method="get">
+            <div class="input-group mb-3 mx-auto" style="width: 300px;">
+                <input type="text" class="form-control rounded-0 border-0 py-2 pl-3" name="keyword" placeholder="Search for products" aria-label="Search for products" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn bg-white rounded-0 border-0 py-2 pl-3" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>        
+            </div>
+        </form>
+    </header>
+<div class="container mt-5">   
+    <form th:action="@{/filter}" method="get">
+        <div class="filter-container">
+          <div class="filter-group">
+            <label for="category">Category:</label>
+            <select class="filter-select" id="category" name="category">
+              <option value="">All categories</option>
+              <option value="phone">Phone</option>
+              <option value="laptop" >Laptop</option>
+              <option value="tablet" >Tablet</option>
+              <option value="tv">TV</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="brand">Brand:</label>
+            <select class="filter-select" id="brand" name="brand">
+              <option value="">All brands</option>
+              <option value="apple" >Apple</option>
+              <option value="samsung" >Samsung</option>
+              <option value="huawei">Huawei</option>
+              <option value="sony">Sony</option>
+              <option value="lg">LG</option>
+              <option value="asus">Asus</option>
+              <option value="acer">Acer</option>
+              <option value="dell">Dell</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="color">Color:</label>
+            <select class="filter-select" id="color" name="color">
+              <option value="">All colors</option>
+              <option value="black">Black</option>
+              <option value="white">White</option>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="price">Price:</label>
+            <select class="filter-select" id="price" name="price">
+              <option value="0">All prices</option>
+              <option value="1000">1000$</option>
+              <option value="2000">2000$</option>
+              <option value="3000">3000$</option>
+            </select>
+          </div>
+          
+          
+          <button type="submit" class="filter-button"><i class="fas fa-filter"></i>Filter</button>
+        </div>
+      </form>
+    <div class="row">
+        <div th:each="product : ${products}" class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" th:src="*{'data:image/jpeg;base64,'+{product.image}}" style="height: 250px; width: 100%; display: block;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p class="card-text" th:text="${product.price} + '$'"></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <form th:action="@{'/detail/' + ${product.id}}" method="post"> 
+                                <button type="submit"  class="btn btn-primary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </button>
+                            </form>
+                            <form th:action="@{'/delete-product/' + ${product.id}}" method="post">
+                                <button type="submit"  class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </form>
+                            <form th:action="@{'/edit-product/' + ${product.id}}" method="post">
+                                <button type="submit"  class="btn btn-warning">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a th:href="@{/addproduct}" class="btn btn-success mb-3">Add Product</a>
+    <a th:href="@{/cart}" class="btn btn-danger mb-3">Shopping cart</a>
+    <footer>
+        <div class="footer-content">
+          <div class="footer-section links">
+            <h3>Liên kết</h3>
+            <ul>
+              <li><a href="#">Trang chủ</a></li>
+              <li><a href="#">Sản phẩm</a></li>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+            </ul>
+          </div>
+        </div>
+    </footer>
+      
+</div>
+
+</body>
+</html>
